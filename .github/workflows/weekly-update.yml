@@ -16,10 +16,12 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: foundryvtt/pf2e.git
-          ref: 'master'
+          ref: '44d6a29e9c1895dd582943f2fe68bfc48a133b80'
           path: '.foundry'
       - name: get foundry repo hash
         run: git --git-dir .foundry/.git rev-parse HEAD >> tmp
+      - name: to be removed - this is a tmp adjustment to get us to a build just beyond the last one coded for
+        run: echo 44d6a29e9c1895dd582943f2fe68bfc48a133b80 >> tmp
       - name: compare previous hash to current
         run: |
           if diff tmp .foundry-hash >/dev/null

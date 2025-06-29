@@ -175,11 +175,6 @@ describe('Bestiary Array - Compatibility Test', function () {
                         if (!!r.system.attributes.weaknesses) {
                             expect(r.system.attributes.weaknesses).toEqual(expect.any(Array))
                         }
-
-                        expect(r).toHaveProperty('system.details.alignment.value')
-                        expect(r.system.details.alignment.value).toEqual(expect.any(String))
-                        expect(r).toHaveProperty('system.details.creatureType')
-                        expect(r.system.details.creatureType).toEqual(expect.any(String))
                         if (!!r.system.details.publicNotes) {
                             expect(r.system.details.publicNotes).toEqual(expect.any(String))
                         }

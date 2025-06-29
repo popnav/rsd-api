@@ -341,7 +341,7 @@ function removeCheckString(description) {
             replacementText = `<span class="skill-check">DC <span class="skill-DC" data-dc="${newInfo.dc}" data-save="${newInfo.type}" data-basic="true">${newInfo.dc}</span> basic ${capitalize(newInfo.type)}</span>`;
         }
         if (newInfo.type == 'flat') {
-            replacementText = `<span class="skill-check">DC <span class="skill-DC" data-dc="${newInfo.dc}" data-save="${newInfo.type}">${newInfo.dc}</span> ${newInfo.type}</span>`;
+            replacementText = `<span class="skill-check">DC <span class="skill-DC" data-dc="${newInfo.dc}" data-save="${newInfo.type}">${newInfo.dc}</span> ${capitalize(newInfo.type)}</span>`;
         }
 
         let replaceIndex = description.indexOf(iterator.value[0]);
@@ -366,7 +366,7 @@ function removeTimeString(description) {
 }
 
 function capitalize(item) {
-    return item.charAt(0).toUpperCase() + item.slice(1)
+    return !!item ? item.charAt(0).toUpperCase() + item.slice(1) : ""
 }
 
 const getParsedArray = new Promise((resolve, reject) => {
