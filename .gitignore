@@ -6,3 +6,9 @@ node_modules/
 static/
 packs/
 tmp
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
