@@ -133,6 +133,9 @@ module.exports.parseSingle = (c) => {
 }
 
 module.exports.capitalize = (item) => {
+//todo- one of the @Check strings in the data is bad
+// so I added this
+     if (!item) return "BAD_DATA";
     return item.charAt(0).toUpperCase() + item.slice(1)
 }
 

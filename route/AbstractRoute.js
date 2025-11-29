@@ -13,6 +13,7 @@ function readfiles(ar, name, parseFunction, postParse) {
         
         files.forEach(file => {
             fs.readFile(ar.singleFolder + '/' + file, 'utf8', function(err2, data) {
+                if (err2) throw new Error(`${ar.singleFolder + '///' + file}`);
                 if (err2) throw err2;
 
                 const obj = parseFunction(JSON.parse(data))
