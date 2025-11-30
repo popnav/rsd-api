@@ -3,6 +3,8 @@ const router = express.Router();
 const fs = require('graceful-fs')
 const path = require('path')
 
+const FileHelper = require(path.resolve('./util/file'))
+
 const localizeFile = path.resolve('./static/lang/en.json')
 let localizerawdata = fs.readFileSync(localizeFile)
 let localize = JSON.parse(localizerawdata)
@@ -272,7 +274,7 @@ function processBestiary(folder, array, name) {
     // console.log(folder, array, name)
     let timer = null
 
-    filesFromFolder(folder).then( files => {
+    FileHelper.filesFromFolder(folder).then( files => {
 
         array['count'] = array['count'] + files.length
         totalCount += files.length
@@ -303,25 +305,9 @@ function processBestiary(folder, array, name) {
                 }, finalTimerThreshold)
             })
         })
-    }).catch(er => console.log('error' + er.message));
+    }).catch(er => console.log('error ' + er.message));
 }
 
-async function filesFromFolder(folder) {
-//
-////todo - old code had a if (err1) throw (or similar)
-    const entries = fs.readdirSync(folder, { withFileTypes: true });
-
-    const files = await Promise.all(
-        entries
-            .filter(entry => entry.name !== '_folders.json')
-            .map(async (entry) => {
-                const fullPath = path.join(folder, entry.name);
-                return entry.isDirectory() ? filesFromFolder(fullPath) : fullPath;
-            })
-    );
-
-    return files.flat();
-}
 //
 ////todo - old code had a if (err1) throw (or similar)
 //    let entries;
